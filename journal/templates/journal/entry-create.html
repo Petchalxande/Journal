@@ -1,0 +1,32 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Create Entry{% endblock %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row">
+    <div class="col">
+        <div class="p-4 ps-5 my-5 mx-5 border-start border-dark border-2">
+            <form method="post" enctype="multipart/form-data">
+                <h2 class="entry-title mb-5">Create Entry</h2>
+
+                <div class="form-group w-100">
+                    {% csrf_token %}
+                    {{ form.media }}
+                    {{ form|crispy }}
+                </div>
+
+                <div class="form-group w-50 mt-4">
+                    <a href="{% url 'entry_list' %}" class="btn btn-outline-dark btn-sm">
+                        Back
+                    </a>
+                    <button type="submit" class="btn btn-dark btn-sm">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,56 @@
+/* Global Styles */
+
+body {
+    font-family: 'Cardo', serif;
+}
+
+a {
+    text-decoration: None;
+    color: black;
+}
+
+a:hover {
+    color: black;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Buttons */
+
+.btn-dark {
+    width: 160px;
+}
+
+.btn-outline-dark {
+    width: 160px;
+}
+
+
+/* Logo & Branding */
+
+.site-logo {
+    font-size: 1.5em;
+    display: inline;
+    font-family: 'Montserrat', sans-serif;
+}
+
+
+/* Entry List Page */
+
+.entry-title {
+    font-size: 1.5em;
+}
+
+
+/* Entry Detail Page */
+
+#bookmark-icon:hover {
+    cursor: pointer;
+}

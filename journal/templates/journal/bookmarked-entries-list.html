@@ -1,0 +1,53 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Bookmarked Entries{% endblock %}
+
+{% block content %}
+
+    <div class="row">
+        <div class="col">
+            <div class="p-4 ps-5 my-5 mx-5 border-start border-dark border-2">
+                <h2 class="entry-title">Bookmarked entries</h2>
+            </div>
+        </div>   
+    </div>
+
+    {% for entry in bookmarked_entries %}
+        
+        <div class="row">
+            <div class="col">
+                <div class="p-4 ps-5 my-5 mx-5 border-start border-dark border-2">
+                    <a class="post-link" href="{% url 'entry_detail' entry.pk %}">
+                        <div class="col-8">
+                            <h2 class="entry-title">{{ entry.title }}</h2>
+                            <small>{{ entry.created }}</small>
+                        </div>
+                    </a>
+                </div>
+            </div>          
+        </div>
+
+    {% endfor %}
+    
+    <div class="row mt-4">
+        <div class="col text-center">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-left d-inline mx-4" viewBox="0 0 16 16">
+                    <path d="M10 12.796V3.204L4.519 8 10 12.796zm-.659.753-5.48-4.796a1 1 0 0 1 0-1.506l5.48-4.796A1 1 0 0 1 11 3.204v9.592a1 1 0 0 1-1.659.753z"/>
+                </svg>
+            </a>
+            {% endif %}
+
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-right d-inline mx-4" viewBox="0 0 16 16">
+                    <path d="M6 12.796V3.204L11.481 8 6 12.796zm.659.753 5.48-4.796a1 1 0 0 0 0-1.506L6.66 2.451C6.011 1.885 5 2.345 5 3.204v9.592a1 1 0 0 0 1.659.753z"/>
+                </svg>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+    
+{% endblock content %}

@@ -1,0 +1,33 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Logout{% endblock %}
+
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="row">
+    <div class="col">
+        <div class="p-4 ps-5 my-5 mx-5 border-start border-dark border-2">
+            <form method="post" action="{% url 'account_logout' %}">
+                <p class="lead entry-title mb-3">Logout</p>
+                {% csrf_token %}
+                {{ form.media }}
+
+                <div class="form-group w-50">
+                    {{ form|crispy }}
+                    <p>Are you sure you want to logout?</p>
+                </div>
+
+                <div class="form-group w-50 mt-4">
+                    <a href="{% url 'user' %}" class="btn btn-outline-dark btn-sm">
+                        Back
+                    </a>
+                    <button type="submit" class="btn btn-dark btn-sm">Logout</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

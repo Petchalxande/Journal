@@ -1,0 +1,44 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Entries{% endblock %}
+
+{% block content %}
+
+
+<div class="row">
+    <div class="col">
+        <a href="{% url 'update-profile' user.pk %}">
+            <div class="p-4 ps-5 my-5 mx-5 border-start border-dark border-2">
+                <h2 class="entry-title mb-2">Profile</h2>
+                <p>View and update personal information</p>
+            </div>
+        </a>
+    </div>   
+</div>
+
+<div class="row">
+    <div class="col">
+        <a href="{% url 'account_change_password' %}">
+            <div class="p-4 ps-5 my-5 mx-5 border-start border-dark border-2">
+                <h2 class="entry-title mb-2">Password</h2>
+                <p>Change your password</p>
+            </div>
+        </a>
+    </div>   
+</div>
+
+<div class="row">
+    <div class="col">
+        <a href="{% url 'account_logout' %}">
+            <div class="p-4 ps-5 my-5 mx-5 border-start border-dark border-2">
+                <h2 class="entry-title mb-2">Logout</h2>
+                <p>Sign out of Journal</p>
+            </div>
+        </a>
+    </div>   
+</div>
+
+
+
+{% endblock content %}
