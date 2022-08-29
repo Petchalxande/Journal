@@ -32,7 +32,7 @@ Homepage
 
 Journal Entry Page
 
-![Journal Entry Page](assets/images/JournalHome.jpg)
+![Journal Entry Page](assets/images/JournalPost.jpg)
 
 
 ## License
