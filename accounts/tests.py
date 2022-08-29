@@ -52,21 +52,3 @@ class CustomUserTests(TestCase):
     def test_string_representation(self):
         self.assertEqual(str(self.user), "testuser@email.com")
         self.assertEqual(str(self.admin_user), "superadmin@email.com")
-
-
-    # Test if user is redirected to signin if logged out
-    def test_redirect(self):
-        self.client.logout()
-        response = self.client.get(reverse('entry_list'))
-
-        # Check for redirect
-        self.assertEqual(response.status_code, 302)
-        self.assertRedirects(response, '%s?next=/' % (reverse('account_login')))
-
-        # Update response variable following redirect 
-        response = self.client.get(
-            '%s?next=/' % (reverse('account_login')))
-
-        # Check redirected to login page
-        self.assertEqual(response.status_code, 200)
-        self.assertContains(response, 'login')
