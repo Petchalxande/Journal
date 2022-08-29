@@ -3,9 +3,6 @@
 *~
 __pycache__
 
-# Docker
-docker-compose.yml
-
 # Env
 .env
 myvenv/
