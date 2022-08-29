@@ -19,8 +19,8 @@ Journal is a personal journalling platform built using Django, Bootstrap and Doc
     - "DJANGO_DEBUG=True
     - "ADMIN_URL= < your chosen admin url >
 3. `$ docker-compose up`
-4. `$ python manage.py migrate`
-5. `$ python manage.py runserver`
+4. `$ docker-compose exec web python manage.py migrate`
+5. `$ docker-compose exec web python manage.py runserver`
 6. Navigate to local host [localhost](http://127.0.0.1:8000/) in your browser
 
 
@@ -74,4 +74,4 @@ SOFTWARE.
 
 ## Tests
 
-`$ python manage.py test`
+`$ docker-compose exec web python manage.py test`
