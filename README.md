@@ -7,8 +7,6 @@ Journal is a personal journalling platform built using Django, Bootstrap and Doc
 ## Table of Contents
 
 - [Installation](#installation)
-- [Usage](#usage)
-- [Credits](#credits)
 - [License](#license)
 
 ## Installation
