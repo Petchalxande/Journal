@@ -37,6 +37,8 @@ PyJWT = {version = "==2.3.0", extras = ["crypto"]}
 django-ckeditor-5 = "==0.0.16"
 Pillow = "==9.1.0"
 django-taggit = "*"
+whitenoise = "*"
+gunicorn = "*"
 
 [dev-packages]
 
