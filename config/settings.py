@@ -18,7 +18,7 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool("DJANGO_DEBUG", default=False)
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', env("DEPLOY_HOST")]
 
 
 # Application definition
@@ -78,16 +78,29 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': "postgres",
-        'USER': "postgres",
-        'PASSWORD': "postgres",
-        'HOST': 'db',
-        'PORT': '5432',
+if DEBUG == True:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': "postgres",
+            'USER': "postgres",
+            'PASSWORD': "postgres",
+            'HOST': 'db',
+            'PORT': '5432',
+        }
     }
-}
+
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': env("PGDATABASE"),
+            'USER': "postgres",
+            'PASSWORD': env("PGPASSWORD"),
+            'HOST': env("DATABASE_URL"),
+            'PORT': env("PGPORT"),
+        }
+    }
 
 
 # Password validation
