@@ -41,8 +41,16 @@ h6 {
     font-family: 'Montserrat', sans-serif;
 }
 
+
 /* Entry List Page */
 
 .entry-title {
     font-size: 1.5em;
+}
+
+
+/* Entry Detail Page */
+
+#bookmark-icon:hover {
+    cursor: pointer;
 }

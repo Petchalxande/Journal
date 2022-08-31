@@ -30,3 +30,6 @@ $RECYCLE.BIN/
 
 # Media
 media/
+
+# Logging
+mysite.log
