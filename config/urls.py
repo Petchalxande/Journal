@@ -17,11 +17,11 @@ urlpatterns = [
     #User Management
     path('accounts/', include('accounts.urls')),
 
-    # Third Party Apps
-    path("ckeditor5/", include('django_ckeditor_5.urls')),
+    # Third Party
+    path('tinymce/', include('tinymce.urls')),
 
     # Journal
-    path('', include('journal.urls'))
+    path('', include('journal.urls')),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

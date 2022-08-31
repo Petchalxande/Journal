@@ -34,11 +34,11 @@ urllib3 = "==1.26.9"
 webencodings = "==0.5.1"
 Django = "==4.0.4"
 PyJWT = {version = "==2.3.0", extras = ["crypto"]}
-django-ckeditor-5 = "==0.0.16"
 Pillow = "==9.1.0"
 django-taggit = "*"
 whitenoise = "*"
 gunicorn = "*"
+django-tinymce = "*"
 
 [dev-packages]
 

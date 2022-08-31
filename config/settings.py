@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
 
     # Third Party
@@ -37,9 +38,9 @@ INSTALLED_APPS = [
     'allauth.account',
     "crispy_forms",
     "crispy_bootstrap5",
-    "django_ckeditor_5",
+    'tinymce',
     "taggit",
-
+    
     # Local
     'accounts.apps.AccountsConfig',
     'journal.apps.JournalConfig',
@@ -190,21 +191,6 @@ ACCOUNT_EMAIL_VERIFICATION = ("mandatory")
 # Crispy Forms Configuration
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-
-
-# CKEditor 5 Configs
-CKEDITOR_5_CONFIGS = {
-    'default': {
-        'toolbar': ['heading', '|', 'bold', 'italic', 'link',
-                    'bulletedList', 'numberedList', 'blockQuote', 'imageUpload', ],
-    },
-
-    'extends': {
-        'toolbar': ['bold', 'italic', 'underline', 'strikethrough', 'removeFormat',
-                    '|', 'bulletedList', 'numberedList', '|', 'codeBlock', '|', 'link',
-                    ],
-    },
-}
 
 #Taggit
 TAGGIT_CASE_INSENSITIVE = True

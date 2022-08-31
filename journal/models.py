@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth import get_user_model
 import uuid
 
-from django_ckeditor_5.fields import CKEditor5Field
+from tinymce.models import HTMLField
 
 
 class Entry(models.Model):
@@ -16,7 +16,7 @@ class Entry(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=50, blank=True, null=True)
-    body = CKEditor5Field('Text', config_name='extends', blank=True)
+    body = HTMLField()
     bookmarked = models.BooleanField(default=False)
 
     class Meta:
