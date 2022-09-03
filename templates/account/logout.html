@@ -14,12 +14,12 @@
                 {% csrf_token %}
                 {{ form.media }}
 
-                <div class="form-group w-50">
+                <div class="col col-xl-6 form-group">
                     {{ form|crispy }}
                     <p>Are you sure you want to logout?</p>
                 </div>
 
-                <div class="form-group w-50 mt-4">
+                <div class="form-group mt-4">
                     <a href="{% url 'user' %}" class="btn btn-outline-dark btn-sm">
                         Back
                     </a>
