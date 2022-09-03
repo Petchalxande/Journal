@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col">
-        <div class="p-4 ps-5 my-5 mx-5 border-start border-dark border-2">
+        <div class="py-4 ps-5 border-start border-dark border-2">
             {% if entry.title %}
             <h2 class="entry-title">{{ entry.title }}</h2>
             {% else %}
@@ -15,12 +15,6 @@
             {% endif %}
             <small>{{ entry.created }}</small>
             <p class="mt-5">{{ entry.body|safe }}</p>
-
-            <div class="mt-5">
-                {% for tag in entry.tags.all %}
-                <span class="badge bg-dark">{{ tag }}</span>
-                {% endfor %}
-            </div>
         </div>
 
     </div>   
@@ -30,7 +24,7 @@
 
 <div class="row">
     <div class="col text-center">
-        <div class="pt-3">
+        <div class="pt-5">
 
             <form action="{% url 'toggle_bookmark' entry.id %}" method="post">
                 {% csrf_token %}
