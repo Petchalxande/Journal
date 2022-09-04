@@ -1,13 +1,19 @@
 from allauth.account.adapter import DefaultAccountAdapter
 
-from config.settings import OPEN_FOR_SIGNUP
+from environs import Env
+
+# Environs
+env = Env()
+env.read_env()
 
 
 class AccountAdapter(DefaultAccountAdapter):
 
     def is_open_for_signup(self, request):
 
-        if OPEN_FOR_SIGNUP:
+        signUpOpen = env("OPEN_FOR_SIGNUP")
+
+        if signUpOpen == True:
             return True
         else:
             return False

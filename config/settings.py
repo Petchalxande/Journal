@@ -169,7 +169,7 @@ CSRF_COOKIE_SECURE = env.bool("DJANGO_CSRF_COOKIE_SECURE", default=True)
 CSRF_TRUSTED_ORIGINS = [env('CSRF_TRUSTED_ORIGINS')]
 
 # Signup Active / Inactive
-OPEN_FOR_SIGNUP = True
+OPEN_FOR_SIGNUP = env("OPEN_FOR_SIGNUP")
 
 # User Authentication and AllAuth
 AUTH_USER_MODEL = 'accounts.CustomUser'
