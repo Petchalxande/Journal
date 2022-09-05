@@ -12,7 +12,7 @@ class AccountAdapter(DefaultAccountAdapter):
     def is_open_for_signup(self, request):
 
         signUpOpen = env("OPEN_FOR_SIGNUP")
-
+        
         if signUpOpen == True:
             return True
         else:
