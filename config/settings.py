@@ -210,7 +210,7 @@ TINYMCE_DEFAULT_CONFIG = {
     "code,help,wordcount",
     "toolbar": "undo redo | "
     "bold italic | alignleft aligncenter "
-    "alignright alignjustify | bullist numlist | "
+    "alignright alignjustify | bullist numlist outdent indent | "
     "removeformat",
     "branding": False,
     "content_css": os.path.join(STATIC_URL, "css/tinymce-styling.css"),
