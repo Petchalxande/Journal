@@ -19,4 +19,4 @@ def searchEntries(request):
                 Q(title__icontains=queried_term)
                 ).distinct()
 
-    return searchResults[0:100], search_query
+    return searchResults[0:50], search_query

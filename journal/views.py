@@ -18,7 +18,7 @@ def entryListView(request):
     
     user_entries = Entry.objects.filter(author=request.user)
 
-    paginator = Paginator(user_entries, 6)
+    paginator = Paginator(user_entries, 50)
     page = request.GET.get('page')
     user_entries = paginator.get_page(page)
 
