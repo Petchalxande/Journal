@@ -198,3 +198,20 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 #Taggit
 TAGGIT_CASE_INSENSITIVE = True
+
+#TinyMCE
+TINYMCE_DEFAULT_CONFIG = {
+    "selector": "textarea",
+    "theme": "silver",
+    "height": 500,
+    "menubar": False,
+    "plugins": "advlist,autolink,lists,link,image,charmap,print,preview,anchor,"
+    "searchreplace,visualblocks,code,fullscreen,insertdatetime,media,table,paste,"
+    "code,help,wordcount",
+    "toolbar": "undo redo | "
+    "bold italic | alignleft aligncenter "
+    "alignright alignjustify | bullist numlist | "
+    "removeformat",
+    "branding": False,
+    "content_css": os.path.join(STATIC_URL, "css/tinymce-styling.css"),
+}

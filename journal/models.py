@@ -15,7 +15,7 @@ class Entry(models.Model):
     )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    title = models.CharField(max_length=50, blank=True, null=True)
+    title = models.CharField(max_length=50)
     body = HTMLField()
     bookmarked = models.BooleanField(default=False)
 
