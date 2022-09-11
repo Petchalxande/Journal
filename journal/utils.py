@@ -4,18 +4,19 @@ from django.db.models import Q
 
 def searchEntries(request):
 
-    search_query = ''
+    search_query = request.GET.get('q')
 
-    if request.GET.get('q'):
-        search_query = request.GET.get('q')
+    if not search_query:
+        searchResults = Entry.objects.none()
 
-    # First filter for all of users journal entries
-    user_entries = Entry.objects.filter(author=request.user)
+    else:
+        searchResults = Entry.objects.none()
 
-    # Filter the users entries by search term
-    searchresults = user_entries.filter(
-        Q(title__icontains=search_query)|
-        Q(body__icontains=search_query)
-    ).order_by('-created')
+        for queried_term in search_query.split(','):
 
-    return searchresults, search_query
+            queried_term = queried_term.strip()
+            searchResults = searchResults | Entry.objects.filter(
+                Q(title__icontains=queried_term)
+                ).distinct()
+
+    return searchResults[0:100], search_query
