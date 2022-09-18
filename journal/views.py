@@ -14,6 +14,7 @@ from .forms import EntryCreateForm, EntryUpdateForm
 from .utils import searchEntries
 
 
+@login_required
 def entryListView(request):
     
     user_entries = Entry.objects.filter(author=request.user)
