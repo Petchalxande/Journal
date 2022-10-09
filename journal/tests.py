@@ -41,8 +41,6 @@ class EntryTests(TestCase):
         self.quote_id = self.quote.id
 
         
-
-
     #Tests the string return method
     def test_string_representation(self):
         self.assertEqual(str(self.entry), f"{self.entry.author}-{self.entry.created}")
