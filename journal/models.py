@@ -15,9 +15,18 @@ class Entry(models.Model):
     )
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
-    title = models.CharField(max_length=50)
-    body = HTMLField()
+
+    # Journal style entry
+    title = models.CharField(max_length=50, null=True, blank=True)
+    body = HTMLField(null=True, blank=True)
+
+    # Quotation style entry
+    quotation = models.TextField(max_length=200, null=True, blank=True)
+    quotee = models.CharField(max_length=50, null=True, blank=True)
+
     bookmarked = models.BooleanField(default=False)
+    entry_type = models.CharField(max_length=10, default='journal')
+
 
     class Meta:
         ordering = ['-created']
@@ -25,7 +34,7 @@ class Entry(models.Model):
         verbose_name_plural = "Entries"
 
     def __str__(self):
-        return self.title
+        return f'{self.author}-{self.created}'
 
     def get_absolute_url(self):
         return reverse('entry_detail', args=[str(self.id)])

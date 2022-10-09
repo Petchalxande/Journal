@@ -27,10 +27,12 @@
                 <div class="py-4 ps-4 ps-lg-5 my-5 border-start border-dark border-2">
                     <a class="post-link" href="{% url 'entry_detail' entry.pk %}">
                         <div class="col-8">
-                            {% if entry.title %}
-                            <h2 class="entry-title">{{ entry.title }}</h2>
-                            {% else %}
-                            <h2 class="entry-title">{{ entry.created|date }}</h2>
+                            {% if entry.entry_type == 'journal' %}
+                                <h2 class="entry-title">{{ entry.title }}</h2>
+                                
+                            {% elif entry.entry_type == 'quotation' %}
+                                <h2 class="entry-title">{{ entry.quotation|safe }}</h2>
+                                <h6> - {{ entry.quotee }}</h6>
                             {% endif %}
                             <small>{{ entry.created }}</small>
                         </div>

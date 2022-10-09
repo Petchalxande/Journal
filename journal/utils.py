@@ -16,7 +16,9 @@ def searchEntries(request):
 
             queried_term = queried_term.strip()
             searchResults = searchResults | Entry.objects.filter(
-                Q(title__icontains=queried_term)
+                Q(title__icontains=queried_term) |
+                Q(quotee__icontains=queried_term) |
+                Q(quotation__icontains=queried_term)
                 ).distinct()
 
     return searchResults[0:50], search_query

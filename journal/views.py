@@ -10,7 +10,7 @@ from django.core.paginator import Paginator
 from django.core.exceptions import PermissionDenied
 
 from .models import Entry
-from .forms import EntryCreateForm, EntryUpdateForm
+from .forms import EntryCreateForm, EntryUpdateForm, QuotationCreateForm, QuotationUpdateForm
 from .utils import searchEntries
 
 
@@ -71,13 +71,47 @@ class EntryCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.author = self.request.user
+        form.instance.entry_type = 'journal'
         return super().form_valid(form)
 
 
-class EntryUpdateView(LoginRequiredMixin, UpdateView):
+class QuotationCreateView(LoginRequiredMixin, CreateView):
     model = Entry
-    form_class = EntryUpdateForm
-    template_name = 'journal/entry-update.html'
+    form_class = QuotationCreateForm
+    template_name = 'journal/entry-create.html'
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        form.instance.entry_type = 'quotation'
+        return super().form_valid(form)
+
+
+@login_required
+def entryUpdateView(request, pk):
+    entry = get_object_or_404(Entry, pk=pk)
+    
+    if entry.entry_type == 'journal':
+        form = EntryUpdateForm(instance=entry)
+    elif entry.entry_type == 'quotation':
+        form = QuotationUpdateForm(instance=entry)
+
+    if request.method == 'POST':
+        if entry.entry_type == 'journal':
+            form = EntryUpdateForm(request.POST, instance=entry)
+        elif entry.entry_type == 'quotation':
+            form = QuotationUpdateForm(request.POST, instance=entry)
+
+        if form.is_valid():
+            entry = form.save()
+
+            return HttpResponseRedirect(reverse_lazy('entry_detail', args=[entry.id]))
+
+    context = {
+        'form': form, 
+        'entry': entry 
+        }
+
+    return render(request, 'journal/entry-update.html', context)
 
 
 class EntryDeleteView(LoginRequiredMixin, DeleteView):

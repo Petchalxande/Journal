@@ -8,13 +8,15 @@
 <div class="row">
     <div class="col">
         <div class="py-4 ps-4 ps-lg-5 border-start border-dark border-2">
-            {% if entry.title %}
+            {% if entry.entry_type == 'journal' %}
             <h2 class="entry-title">{{ entry.title }}</h2>
-            {% else %}
-            <h2 class="entry-title">{{ entry.created|date }}</h2>
-            {% endif %}
             <small>{{ entry.created }}</small>
             <p class="mt-5">{{ entry.body|safe }}</p>
+
+            {% elif entry.entry_type == 'quotation' %}
+                <h2 class="entry-title">{{ entry.quotation|safe }}</h2>
+                <h6>- {{ entry.quotee }}</h6>
+            {% endif %}
         </div>
 
     </div>   

@@ -15,18 +15,24 @@
 
     {% for entry in bookmarked_entries %}
         
-        <div class="row">
-            <div class="col">
-                <div class="p-4 ps-4 ps-lg-5 my-5 border-start border-dark border-2">
-                    <a class="post-link" href="{% url 'entry_detail' entry.pk %}">
-                        <div class="col-8">
+    <div class="row">
+        <div class="col">
+            <div class="py-4 ps-4 ps-lg-5 my-5 border-start border-dark border-2">
+                <a class="post-link" href="{% url 'entry_detail' entry.pk %}">
+                    <div class="col-8">
+                        {% if entry.entry_type == 'journal' %}
                             <h2 class="entry-title">{{ entry.title }}</h2>
-                            <small>{{ entry.created }}</small>
-                        </div>
-                    </a>
-                </div>
-            </div>          
-        </div>
+                            
+                        {% elif entry.entry_type == 'quotation' %}
+                            <h2 class="entry-title">{{ entry.quotation|safe }}</h2>
+                            <h6> - {{ entry.quotee }}</h6>
+                        {% endif %}
+                        <small>{{ entry.created }}</small>
+                    </div>
+                </a>
+            </div>
+        </div>          
+    </div>
 
     {% endfor %}
     

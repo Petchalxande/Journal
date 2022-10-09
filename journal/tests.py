@@ -7,7 +7,7 @@ from django.contrib.auth.models import Permission
 from django.urls import reverse
 
 
-class NewsTests(TestCase):
+class EntryTests(TestCase):
     def setUp(self):
         self.user = get_user_model().objects.create_user(
             username = 'TestUser',
@@ -20,28 +20,50 @@ class NewsTests(TestCase):
         self.update_news = Permission.objects.get(codename='change_entry')
         self.delete_news = Permission.objects.get(codename='delete_entry')
 
-        # Create the test post
+        # Create the test journal post
         self.entry = Entry.objects.create(
-            title= "Test Entry Title",
             author = get_user_model().objects.get(email="testuser@email.com"),
-            body = "This is some content"
+            title= "Test Entry Title",
+            body = "This is some content",
+            entry_type = 'journal',
             )
 
         self.entry_id = self.entry.id
 
+        # Create the test quote post
+        self.quote = Entry.objects.create(
+            author = get_user_model().objects.get(email="testuser@email.com"),
+            quotation = "This is a test quotation",
+            quotee = "A Interesting Person",
+            entry_type = 'quotation',
+            )
+
+        self.quote_id = self.quote.id
+
+        
+
 
     #Tests the string return method
     def test_string_representation(self):
-        self.assertEqual(str(self.entry), "Test Entry Title")
+        self.assertEqual(str(self.entry), f"{self.entry.author}-{self.entry.created}")
 
 
-    # Tests entry was created correctly
-    def test_post_content(self):
+    # Tests journal entry was created correctly
+    def test_entry_content(self):
         self.assertIsNotNone(self.entry.id)
         self.assertEqual(self.entry.author.email, "testuser@email.com")
         self.assertEqual(self.entry.title, "Test Entry Title")
         self.assertEqual(self.entry.body, "This is some content")
         self.assertEqual(self.entry.bookmarked, False)
+
+    
+    # Tests quote entry was created correctly
+    def test_quote_content(self):
+        self.assertIsNotNone(self.quote.id)
+        self.assertEqual(self.quote.author.email, "testuser@email.com")
+        self.assertEqual(self.quote.quotation, "This is a test quotation")
+        self.assertEqual(self.quote.quotee, "A Interesting Person")
+        self.assertEqual(self.quote.bookmarked, False)
 
     # Entry List
 
@@ -74,7 +96,7 @@ class NewsTests(TestCase):
 
     # Detail View
 
-    # Tests if users can view news posts when logged in
+    # Tests if users can view entries when logged in
     def test_view_detail_logged_in(self):
         self.client.login(email="testuser@email.com", password="testpass123")
         response = self.client.get(self.entry.get_absolute_url())
