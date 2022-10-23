@@ -52,7 +52,7 @@ class QuotationCreateForm(ModelForm):
 
         labels = {
             'quotation': 'Quotation',
-            'quotee': 'Quotee',
+            'quotee': 'Source',
         }
 
         help_texts = {
