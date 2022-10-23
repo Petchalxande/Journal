@@ -69,6 +69,12 @@ class EntryCreateView(LoginRequiredMixin, CreateView):
     form_class = EntryCreateForm
     template_name = 'journal/entry-create.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'New Entry'
+        return context
+
+
     def form_valid(self, form):
         form.instance.author = self.request.user
         form.instance.entry_type = 'journal'
@@ -79,6 +85,11 @@ class QuotationCreateView(LoginRequiredMixin, CreateView):
     model = Entry
     form_class = QuotationCreateForm
     template_name = 'journal/entry-create.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'New Quotation'
+        return context
 
     def form_valid(self, form):
         form.instance.author = self.request.user
