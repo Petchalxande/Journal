@@ -19,7 +19,7 @@ def entryListView(request):
     
     user_entries = Entry.objects.filter(author=request.user)
 
-    paginator = Paginator(user_entries, 50)
+    paginator = Paginator(user_entries, 12)
     page = request.GET.get('page')
     user_entries = paginator.get_page(page)
 
@@ -46,6 +46,7 @@ def entryDetailView(request, pk):
         raise PermissionDenied()
 
 
+@login_required
 def toggleBookmarkView(request, pk):
 
     if request.method == 'POST':
@@ -158,9 +159,13 @@ def searchEntriesListView(request):
     if request.GET:
         search_results, search_query = searchEntries(request)
 
+        paginator = Paginator(search_results, 12)
+        page = request.GET.get('page')
+        search_results = paginator.get_page(page)
+
         context = {
             'search_query': search_query,
-            'journal_entries_search_results': search_results
+            'search_results': search_results
         }
 
         return render(request, 'journal/search-entries-results.html', context)

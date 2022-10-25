@@ -1,5 +1,6 @@
 {% extends '_base.html' %}
 {% load static %}
+{% load templatehelpers %}
 
 {% block title %}Search Entries: Results{% endblock %}
 
@@ -25,7 +26,7 @@
         </div>   
     </div>
 
-    {% for entry in journal_entries_search_results %}
+    {% for entry in search_results %}
         
     <div class="row">
         <div class="col">
@@ -47,5 +48,26 @@
     </div>
 
     {% endfor %}
+
+    <!-- Pagination -->
+    <div class="row mt-4">
+        <div class="col text-center">
+            {% if search_results.has_previous %}
+            <a href="{% relative_url search_results.previous_page_number 'page' request.GET.urlencode %}" class="pagination-control">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-left d-inline mx-4" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z"/>
+                </svg>
+            </a>
+            {% endif %}
+
+            {% if search_results.has_next %}
+            <a href="{% relative_url search_results.next_page_number 'page' request.GET.urlencode %}" class="pagination-control">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-right d-inline mx-4" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </a>
+            {% endif %}
+        </div>
+    </div>
         
 {% endblock content %}

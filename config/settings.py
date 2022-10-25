@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "taggit",
     
     # Local
+    'core.apps.CoreConfig',
     'accounts.apps.AccountsConfig',
     'journal.apps.JournalConfig',
 ]

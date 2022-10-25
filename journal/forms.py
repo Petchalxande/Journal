@@ -21,7 +21,7 @@ class EntryCreateForm(ModelForm):
 
         labels = {
             'title': 'Title',
-            'body': 'Body',
+            'body': 'Content',
         }
 
         help_texts = {

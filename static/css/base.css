@@ -40,6 +40,36 @@ h6 {
     font-family: 'Montserrat', sans-serif;
 }
 
+/* Navbar */
+
+.navbar-light .navbar-nav .nav-link {
+    color: #212529;
+}
+
+a.nav-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+    color: #212529;
+}
+
+.dropdown-menu {
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9em;
+    color: #212529;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+/* Pagination */
+
+.pagination-control {
+    opacity: 75%;
+}
+
+
 
 /* Entry List Page */
 
